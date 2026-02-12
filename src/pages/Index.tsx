@@ -5,6 +5,7 @@ import AffirmationResult from "@/components/AffirmationResult";
 import ErrorMessage from "@/components/ErrorMessage";
 import LoadingShimmer from "@/components/LoadingShimmer";
 import AppFooter from "@/components/AppFooter";
+import ThemeToggle from "@/components/ThemeToggle";
 import { generateAffirmation } from "@/lib/api";
 
 const Index = () => {
@@ -40,7 +41,8 @@ const Index = () => {
   }, [lastSubmit, handleSubmit]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background bg-calm-pattern">
+      <ThemeToggle />
       <main className="flex-1 flex flex-col items-center justify-start px-4">
         <AppHeader />
 
