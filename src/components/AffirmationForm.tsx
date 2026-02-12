@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { Loader2, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 const FEELING_PRESETS = [
-  "Anxious",
-  "Overwhelmed",
-  "Lonely",
-  "Grateful",
-  "Hopeful",
-  "Exhausted",
+  { label: "Anxious", emoji: "😟" },
+  { label: "Overwhelmed", emoji: "🌊" },
+  { label: "Lonely", emoji: "🌙" },
+  { label: "Grateful", emoji: "🙏" },
+  { label: "Hopeful", emoji: "🌱" },
+  { label: "Exhausted", emoji: "🫠" },
 ];
 
 interface Props {
@@ -52,9 +51,9 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
       <div className="space-y-2">
-        <Label htmlFor="name" className="text-sm font-medium text-foreground">
+        <Label htmlFor="name" className="text-sm font-medium text-foreground/80 tracking-wide uppercase text-[11px]">
           Your name
         </Label>
         <Input
@@ -70,41 +69,39 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
           disabled={isLoading}
           aria-invalid={!!errors.name}
           aria-describedby={errors.name ? "name-error" : undefined}
-          className="bg-background border-border focus:ring-2 focus:ring-ring/30 transition-shadow"
+          className="bg-background/50 border-border/60 rounded-xl h-11
+            focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all duration-300
+            placeholder:text-muted-foreground/50"
         />
         {errors.name && (
-          <p id="name-error" className="text-sm text-warning" role="alert">
+          <p id="name-error" className="text-sm text-warning animate-fade-in-up" role="alert" style={{ animationDuration: '0.3s' }}>
             {errors.name}
           </p>
         )}
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="feeling" className="text-sm font-medium text-foreground">
+      <div className="space-y-3">
+        <Label htmlFor="feeling" className="text-sm font-medium text-foreground/80 tracking-wide uppercase text-[11px]">
           How are you feeling?
         </Label>
-        <div className="flex flex-wrap gap-2 mb-2" role="group" aria-label="Quick feeling options">
-          {FEELING_PRESETS.map((preset) => (
+        <div className="flex flex-wrap gap-2" role="group" aria-label="Quick feeling options">
+          {FEELING_PRESETS.map(({ label, emoji }) => (
             <button
-              key={preset}
+              key={label}
               type="button"
-              onClick={() => selectPreset(preset)}
+              onClick={() => selectPreset(label)}
               disabled={isLoading}
-              className={`text-xs px-3 py-1.5 rounded-full border transition-all duration-200
-                ${feeling === preset
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-secondary text-secondary-foreground border-border hover:bg-accent hover:text-accent-foreground"
-                }
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
-                disabled:opacity-50 disabled:cursor-not-allowed`}
+              className={`feeling-chip ${
+                feeling === label ? "feeling-chip-active" : "feeling-chip-inactive"
+              }`}
             >
-              {preset}
+              <span className="mr-1">{emoji}</span> {label}
             </button>
           ))}
         </div>
         <Textarea
           id="feeling"
-          placeholder="Describe what's on your mind…"
+          placeholder="Or describe what's on your mind…"
           value={feeling}
           onChange={(e) => {
             setFeeling(e.target.value);
@@ -115,38 +112,43 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
           disabled={isLoading}
           aria-invalid={!!errors.feeling}
           aria-describedby={errors.feeling ? "feeling-error" : undefined}
-          className="bg-background border-border focus:ring-2 focus:ring-ring/30 transition-shadow resize-none"
+          className="bg-background/50 border-border/60 rounded-xl
+            focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all duration-300
+            placeholder:text-muted-foreground/50 resize-none"
         />
         <div className="flex justify-between items-center">
           {errors.feeling ? (
-            <p id="feeling-error" className="text-sm text-warning" role="alert">
+            <p id="feeling-error" className="text-sm text-warning animate-fade-in-up" role="alert" style={{ animationDuration: '0.3s' }}>
               {errors.feeling}
             </p>
           ) : (
             <span />
           )}
-          <span className="text-xs text-muted-foreground">{feeling.length}/280</span>
+          <span className="text-[10px] text-muted-foreground/60 tabular-nums">{feeling.length}/280</span>
         </div>
       </div>
 
-      <Button
+      <button
         type="submit"
         disabled={isLoading}
-        className="w-full h-11 text-base font-medium bg-primary text-primary-foreground hover:bg-primary/90 
-          active:scale-[0.98] transition-all duration-200 focus-visible:ring-2 focus-visible:ring-ring"
+        className="btn-primary-glow w-full h-12 rounded-xl text-sm font-medium
+          bg-primary text-primary-foreground
+          focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none
+          disabled:opacity-60 disabled:cursor-not-allowed
+          flex items-center justify-center gap-2"
       >
         {isLoading ? (
-          <span className="flex items-center gap-2">
+          <>
             <Loader2 className="w-4 h-4 animate-spin" />
-            Creating something supportive for you…
-          </span>
+            <span>Creating something supportive for you…</span>
+          </>
         ) : (
-          <span className="flex items-center gap-2">
+          <>
             <Sparkles className="w-4 h-4" />
-            Generate affirmation
-          </span>
+            <span>Generate affirmation</span>
+          </>
         )}
-      </Button>
+      </button>
     </form>
   );
 }
