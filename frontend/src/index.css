@@ -68,58 +68,58 @@
   }
 
   .dark {
-    --background: 345 30% 10%;
-    --foreground: 330 35% 95%;
+    --background: 240 10% 5%;
+    --foreground: 0 0% 95%;
 
-    --card: 345 25% 16%;
-    --card-foreground: 330 35% 95%;
+    --card: 240 8% 10%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 345 25% 16%;
-    --popover-foreground: 330 35% 95%;
+    --popover: 240 8% 10%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 350 80% 70%;
-    --primary-foreground: 345 30% 10%;
+    --primary: 346 82% 62%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 345 20% 22%;
-    --secondary-foreground: 330 25% 90%;
+    --secondary: 280 48% 65%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 345 20% 22%;
-    --muted-foreground: 330 15% 70%;
+    --muted: 240 6% 18%;
+    --muted-foreground: 240 5% 70%;
 
-    --accent: 345 25% 22%;
-    --accent-foreground: 330 40% 85%;
+    --accent: 158 45% 55%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 20 55% 40%;
-    --destructive-foreground: 20 80% 95%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 200 18% 16%;
-    --input: 200 18% 16%;
-    --ring: 172 50% 48%;
+    --border: 240 6% 20%;
+    --input: 240 6% 18%;
+    --ring: 346 82% 62%;
 
-    /* Enhanced dark mode glass */
-    --glass-bg: 345 25% 18% / 0.75;
-    --glass-border: 345 35% 32% / 0.55;
-    --glass-shadow: 350 75% 72% / 0.25;
+    /* Dark mode glass with stronger contrast */
+    --glass-bg: 240 8% 12% / 0.85;
+    --glass-border: 346 40% 45% / 0.3;
+    --glass-shadow: 0 0% 0% / 0.5;
 
-    /* Brighter dark mode aurora */
-    --aurora-1: 350 85% 72%;
-    --aurora-2: 285 60% 78%;
-    --aurora-3: 150 50% 75%;
-    --aurora-4: 345 35% 22%;
+    /* Dark mode aurora (subtle, no brown cast) */
+    --aurora-1: 346 70% 45%;
+    --aurora-2: 280 60% 50%;
+    --aurora-3: 158 50% 45%;
+    --aurora-4: 240 10% 15%;
 
-    /* Enhanced dark mode blobs */
-    --blob-1: 350 85% 72% / 0.18;
-    --blob-2: 285 60% 78% / 0.16;
-    --blob-3: 150 50% 75% / 0.14;
+    /* Dark mode blobs */
+    --blob-1: 346 70% 45% / 0.18;
+    --blob-2: 280 60% 50% / 0.16;
+    --blob-3: 158 50% 45% / 0.14;
 
-    --sidebar-background: 345 30% 10%;
-    --sidebar-foreground: 330 35% 95%;
-    --sidebar-primary: 350 80% 70%;
-    --sidebar-primary-foreground: 345 30% 10%;
-    --sidebar-accent: 345 20% 22%;
-    --sidebar-accent-foreground: 330 25% 90%;
-    --sidebar-border: 345 20% 24%;
-    --sidebar-ring: 350 80% 70%;
+    --sidebar-background: 240 10% 5%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 346 82% 62%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 6% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 240 6% 20%;
+    --sidebar-ring: 346 82% 62%;
   }
 }
 
@@ -171,17 +171,20 @@
   }
 
   .dark .glass-card {
+    border-color: hsl(var(--glass-border));
     box-shadow:
-      0 8px 32px hsl(var(--glass-shadow)),
-      inset 0 1px 0 hsl(165 30% 100% / 0.05),
-      0 1px 2px hsl(350 80% 70% / 0.1);
+      0 0 0 1px hsl(346 60% 60% / 0.08),
+      0 4px 12px hsl(0 0% 0% / 0.5),
+      0 12px 32px hsl(0 0% 0% / 0.4);
   }
 
   .dark .glass-card:hover {
+    border-color: hsl(346 60% 55% / 0.4);
     box-shadow:
-      0 12px 40px hsl(var(--glass-shadow)),
-      inset 0 1px 0 hsl(165 30% 100% / 0.08),
-      0 2px 4px hsl(350 80% 70% / 0.15);
+      0 0 0 1px hsl(346 70% 65% / 0.12),
+      0 6px 16px hsl(0 0% 0% / 0.55),
+      0 16px 40px hsl(0 0% 0% / 0.45),
+      0 0 36px hsl(346 70% 60% / 0.12);
   }
 
   /* Enhanced preset chip */
@@ -198,16 +201,35 @@
     transform: scale(1.05);
   }
 
+  .dark .feeling-chip-active {
+    box-shadow:
+      0 0 0 1px hsl(var(--primary) / 0.3),
+      0 4px 16px hsl(var(--primary) / 0.4),
+      0 8px 24px hsl(var(--primary) / 0.25);
+  }
+
   .feeling-chip-inactive {
     background: hsl(var(--glass-bg));
     @apply text-muted-foreground border-border;
     backdrop-filter: blur(8px);
   }
 
+  .dark .feeling-chip-inactive {
+    background: hsl(240 7% 15%);
+    color: hsl(0 0% 85%);
+    border-color: hsl(240 6% 25%);
+  }
+
   .feeling-chip-inactive:hover:not(:disabled) {
     @apply bg-accent text-accent-foreground border-accent;
     transform: translateY(-1px);
     box-shadow: 0 2px 8px hsl(var(--glass-shadow));
+  }
+
+  .dark .feeling-chip-inactive:hover:not(:disabled) {
+    background: hsl(240 8% 20%);
+    border-color: hsl(346 50% 50% / 0.4);
+    color: hsl(0 0% 95%);
   }
 
   /* Enhanced primary CTA button */
