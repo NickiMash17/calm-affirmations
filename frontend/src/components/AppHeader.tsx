@@ -1,4 +1,4 @@
-import { Heart } from "lucide-react";
+﻿import { Heart } from "lucide-react";
 
 export default function AppHeader() {
   return (
@@ -10,7 +10,7 @@ export default function AppHeader() {
           </div>
         </div>
         <h1 className="text-3xl sm:text-5xl font-serif font-semibold text-foreground tracking-tight leading-none">
-          Live Mood Architect
+          Calm Affirmations
         </h1>
       </div>
       <p className="text-muted-foreground text-sm sm:text-base max-w-sm mx-auto leading-relaxed font-light italic">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
 export default function ThemeToggle() {
@@ -33,7 +33,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      className="fixed top-4 right-4 z-50 p-2.5 rounded-xl glass-card
+      className="p-2.5 rounded-xl glass-card
         hover:scale-105 active:scale-95 transition-all duration-300
         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >

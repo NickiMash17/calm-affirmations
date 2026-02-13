@@ -1,18 +1,18 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 const FEELING_PRESETS = [
-  { label: "Anxious", emoji: "??" },
-  { label: "Overwhelmed", emoji: "??" },
-  { label: "Lonely", emoji: "??" },
-  { label: "Grateful", emoji: "??" },
-  { label: "Hopeful", emoji: "??" },
-  { label: "Exhausted", emoji: "??" },
-  { label: "Peaceful", emoji: "???" },
-  { label: "Stressed", emoji: "?????" },
+  { label: "Anxious", emoji: "😟" },
+  { label: "Overwhelmed", emoji: "🌊" },
+  { label: "Lonely", emoji: "🌙" },
+  { label: "Grateful", emoji: "🙏" },
+  { label: "Hopeful", emoji: "🌱" },
+  { label: "Exhausted", emoji: "🥱" },
+  { label: "Peaceful", emoji: "🕊️" },
+  { label: "Stressed", emoji: "😮‍💨" },
 ];
 
 interface Props {
@@ -97,7 +97,8 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
                 feeling === label ? "feeling-chip-active" : "feeling-chip-inactive"
               } text-[11px] sm:text-xs`}
             >
-              <span className="mr-1">{emoji}</span> {label}
+              <span className="mr-1" aria-hidden="true">{emoji}</span>
+              <span>{label}</span>
             </button>
           ))}
         </div>
@@ -135,11 +136,11 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
       <button
         type="submit"
         disabled={isLoading}
-        className="btn-primary-glow w-full h-14 sm:h-14 md:h-16 rounded-xl text-sm sm:text-base font-medium
+        className="btn-primary-glow w-full min-h-[52px] sm:min-h-[60px] rounded-2xl text-base font-medium
           bg-primary text-primary-foreground
           focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none
           disabled:opacity-60 disabled:cursor-not-allowed
-          flex items-center justify-center gap-2"
+          flex items-center justify-center gap-2 px-4"
       >
         {isLoading ? (
           <span className="flex items-center gap-2">

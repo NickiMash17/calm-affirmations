@@ -1,4 +1,5 @@
-import { NavLink } from "@/components/NavLink";
+﻿import { NavLink } from "@/components/NavLink";
+import ThemeToggle from "@/components/ThemeToggle";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
@@ -12,24 +13,21 @@ export default function TopNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="mt-6 sm:mt-8 mb-6" aria-label="Primary">
-      <div className="flex items-center justify-between sm:justify-center">
-        <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground/60 sm:hidden">
-          Menu
-        </span>
+    <nav className="mt-4 sm:mt-6 mb-6 pt-2" aria-label="Primary">
+      <div className="flex items-center justify-between gap-3">
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="sm:hidden inline-flex items-center gap-2 px-3 py-2 rounded-full border border-border/60
+          className="sm:hidden inline-flex items-center justify-center p-2.5 rounded-xl border border-border/60
             text-muted-foreground/80 bg-background/40 hover:border-primary/40 hover:text-foreground transition-all"
           aria-expanded={open}
           aria-controls="mobile-nav"
         >
           {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-          <span className="text-xs">Navigate</span>
+          <span className="sr-only">Toggle menu</span>
         </button>
 
-        <div className="hidden sm:flex items-center justify-center gap-2 sm:gap-3">
+        <div className="hidden sm:flex items-center justify-center gap-2 sm:gap-3 flex-1">
           {links.map((link) => (
             <NavLink
               key={link.to}
@@ -42,6 +40,10 @@ export default function TopNav() {
               {link.label}
             </NavLink>
           ))}
+        </div>
+
+        <div className="ml-auto sm:ml-0">
+          <ThemeToggle />
         </div>
       </div>
 
