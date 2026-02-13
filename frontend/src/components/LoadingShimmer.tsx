@@ -19,11 +19,18 @@ export default function LoadingShimmer({ elapsedMs }: Props) {
   }, [elapsedMs]);
 
   return (
-    <div className="mt-6 glass-card rounded-2xl p-6 space-y-3" role="status" aria-live="polite">
-      <div className="h-3 rounded-full animate-shimmer w-full" />
-      <div className="h-3 rounded-full animate-shimmer w-4/5" style={{ animationDelay: "0.15s" }} />
-      <div className="h-3 rounded-full animate-shimmer w-3/5" style={{ animationDelay: "0.3s" }} />
-      <p className="text-xs text-muted-foreground/60 text-center pt-2 animate-pulse-gentle" key={pulse % 2}>
+    <div className="mt-6 glass-card rounded-3xl p-8 sm:p-10 space-y-6 animate-fade-in" role="status" aria-live="polite">
+      <div className="flex items-center justify-center">
+        <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full animate-pulse-gentle flex items-center justify-center">
+          <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full animate-breathe" />
+        </div>
+      </div>
+      <div className="space-y-4">
+        <div className="h-8 rounded-xl animate-shimmer w-full" />
+        <div className="h-6 rounded-xl animate-shimmer w-5/6" style={{ animationDelay: "0.2s" }} />
+        <div className="h-6 rounded-xl animate-shimmer w-3/4" style={{ animationDelay: "0.4s" }} />
+      </div>
+      <p className="text-sm text-muted-foreground/70 text-center animate-pulse-gentle" key={pulse % 2}>
         {message}
       </p>
     </div>

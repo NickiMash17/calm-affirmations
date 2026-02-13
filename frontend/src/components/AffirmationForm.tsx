@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { Loader2, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 const FEELING_PRESETS = [
-  { label: "Anxious", emoji: "😟" },
-  { label: "Overwhelmed", emoji: "🌊" },
-  { label: "Lonely", emoji: "🌙" },
-  { label: "Grateful", emoji: "🙏" },
-  { label: "Hopeful", emoji: "🌱" },
-  { label: "Exhausted", emoji: "🥱" },
+  { label: "Anxious", emoji: "??" },
+  { label: "Overwhelmed", emoji: "??" },
+  { label: "Lonely", emoji: "??" },
+  { label: "Grateful", emoji: "??" },
+  { label: "Hopeful", emoji: "??" },
+  { label: "Exhausted", emoji: "??" },
+  { label: "Peaceful", emoji: "???" },
+  { label: "Stressed", emoji: "?????" },
 ];
 
 interface Props {
@@ -51,8 +53,8 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-      <div className="space-y-2">
+    <form onSubmit={handleSubmit} className="space-y-8 animate-fade-in-up" noValidate>
+      <div className="space-y-3">
         <Label htmlFor="name" className="text-sm font-medium text-foreground/80 tracking-wide uppercase text-[11px]">
           Your name
         </Label>
@@ -69,8 +71,8 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
           disabled={isLoading}
           aria-invalid={!!errors.name}
           aria-describedby={errors.name ? "name-error" : undefined}
-          className="bg-background/50 border-border/60 rounded-xl h-11
-            focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all duration-300
+          className="bg-background/60 border-border/70 rounded-xl h-12 px-4 text-base
+            focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all duration-300
             placeholder:text-muted-foreground/50"
         />
         {errors.name && (
@@ -108,12 +110,12 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
             if (errors.feeling) setErrors((p) => ({ ...p, feeling: undefined }));
           }}
           maxLength={280}
-          rows={3}
+          rows={4}
           disabled={isLoading}
           aria-invalid={!!errors.feeling}
           aria-describedby={errors.feeling ? "feeling-error" : undefined}
-          className="bg-background/50 border-border/60 rounded-xl
-            focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all duration-300
+          className="bg-background/60 border-border/70 rounded-xl px-4 py-3 text-base
+            focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all duration-300
             placeholder:text-muted-foreground/50 resize-none"
         />
         <div className="flex justify-between items-center">
@@ -122,7 +124,9 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
               {errors.feeling}
             </p>
           ) : (
-            <span />
+            <span className="text-xs text-muted-foreground/70">
+              Take your time. There's no rush.
+            </span>
           )}
           <span className="text-[10px] text-muted-foreground/60 tabular-nums">{feeling.length}/280</span>
         </div>
@@ -131,17 +135,21 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
       <button
         type="submit"
         disabled={isLoading}
-        className="btn-primary-glow w-full h-12 rounded-xl text-sm font-medium
+        className="btn-primary-glow w-full h-13 sm:h-14 rounded-xl text-sm font-medium
           bg-primary text-primary-foreground
           focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none
           disabled:opacity-60 disabled:cursor-not-allowed
           flex items-center justify-center gap-2"
       >
         {isLoading ? (
-          <>
-            <Loader2 className="w-4 h-4 animate-spin" />
-            <span>Creating something supportive for you...</span>
-          </>
+          <span className="flex items-center gap-2">
+            <span className="loading-dots">
+              <span />
+              <span />
+              <span />
+            </span>
+            <span>Creating your affirmation</span>
+          </span>
         ) : (
           <>
             <Sparkles className="w-4 h-4" />
