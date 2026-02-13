@@ -24,12 +24,9 @@
       href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    
-    <!-- Performance optimizations -->
+
     <link rel="dns-prefetch" href="https://calm-affirmations.onrender.com" />
     <link rel="prefetch" href="/calm-logo.jpeg" as="image" />
-    
-    <!-- Resource hints for better caching -->
     <meta name="format-detection" content="telephone=no" />
 
     <meta property="og:title" content="Calm Affirmations" />
@@ -70,13 +67,13 @@
       #app-loader .loader-card {
         padding: 32px 40px;
         border-radius: 20px;
-        background: linear-gradient(135deg, 
-          rgba(247, 109, 147, 0.08), 
+        background: linear-gradient(135deg,
+          rgba(247, 109, 147, 0.08),
           rgba(213, 166, 245, 0.06),
           rgba(174, 230, 200, 0.04)
         );
         border: 1px solid rgba(247, 109, 147, 0.15);
-        box-shadow: 
+        box-shadow:
           0 20px 60px rgba(0, 0, 0, 0.08),
           0 0 120px rgba(247, 109, 147, 0.05),
           inset 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -89,8 +86,8 @@
 
       #app-loader .brand {
         font-family: "Crimson Pro", Georgia, serif;
-        font-size: 24px;
-        margin: 0 0 16px;
+        font-size: 20px;
+        margin: 0 0 12px;
         font-weight: 600;
         background: linear-gradient(135deg, #f76d93, #d5a6f5);
         -webkit-background-clip: text;
@@ -142,17 +139,6 @@
         animation: heartbeat 1.8s ease-in-out infinite;
       }
 
-      #app-loader .brand {
-        font-family: "Crimson Pro", Georgia, serif;
-        font-size: 20px;
-        margin: 0 0 12px;
-        font-weight: 600;
-        background: linear-gradient(135deg, #f76d93, #d5a6f5);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
       #app-loader .hint {
         font-size: 12px;
         opacity: 0.8;
@@ -167,7 +153,29 @@
         font-style: italic;
       }
 
-      /* Responsive adjustments */
+      .boot-error {
+        margin: 32px auto;
+        max-width: 520px;
+        padding: 16px;
+        border: 1px solid #f8c4d2;
+        border-radius: 12px;
+        background: #fff5f8;
+        color: #7a2f47;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        text-align: center;
+      }
+
+      .boot-error button {
+        margin-top: 12px;
+        border: 0;
+        border-radius: 10px;
+        padding: 8px 12px;
+        background: #f76d93;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
       @media (min-width: 768px) {
         #app-loader .loader-card {
           padding: 36px 44px;
@@ -259,6 +267,46 @@
       </div>
     </div>
     <div id="root"></div>
+    <script>
+      (function () {
+        var BOOT_FLAG = "__CALM_APP_BOOTED__";
+        var root = document.getElementById("root");
+
+        function hideLoader() {
+          var loader = document.getElementById("app-loader");
+          if (!loader) return;
+          loader.style.opacity = "0";
+          loader.style.pointerEvents = "none";
+          loader.style.transition = "opacity 0.35s ease-out";
+          window.setTimeout(function () {
+            if (loader.parentNode) loader.remove();
+          }, 360);
+        }
+
+        function showBootError() {
+          if (!root || window[BOOT_FLAG]) return;
+          if (root.children.length > 0) return;
+          var box = document.createElement("div");
+          box.className = "boot-error";
+          box.innerHTML = "<strong>The app did not load correctly.</strong><br/>Please hard refresh this page to clear old cached files.<br/><button type='button'>Reload now</button>";
+          box.querySelector("button").addEventListener("click", function () {
+            window.location.reload();
+          });
+          root.appendChild(box);
+        }
+
+        window.addEventListener("load", function () {
+          window.setTimeout(hideLoader, 1200);
+        });
+
+        window.setTimeout(function () {
+          if (!window[BOOT_FLAG]) {
+            hideLoader();
+            showBootError();
+          }
+        }, 5000);
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -3,8 +3,11 @@ import App from "./App";
 import "./index.css";
 
 const loader = document.getElementById("app-loader");
+const bootFlag = "__CALM_APP_BOOTED__";
 
 createRoot(document.getElementById("root")!).render(<App />);
+
+window[bootFlag as keyof Window & string] = true;
 
 if (loader) {
   window.setTimeout(() => {
