@@ -1,4 +1,5 @@
-﻿import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import AppFooter from "@/components/AppFooter";
 import FloatingBlobs from "@/components/FloatingBlobs";
 import FloatingHearts from "@/components/FloatingHearts";
@@ -6,6 +7,10 @@ import TopNav from "@/components/TopNav";
 
 export default function AppShell() {
   const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen flex flex-col aurora-bg">
