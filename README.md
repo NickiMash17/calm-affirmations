@@ -117,3 +117,16 @@ Frontend:
 - Set `VITE_API_BASE` to deployed backend URL
 - Rebuild/redeploy after env updates
 
+## Live URLs
+
+- Frontend: https://calm-affirmations-topaz.vercel.app/
+- Backend: https://calm-affirmations.onrender.com
+
+## Submission Checklist
+
+- Public GitHub repository link
+- Live URL (frontend)
+- Backend URL
+- Screenshot of hosting provider environment variables (secret value blurred)
+- Short note (2-5 bullets): what you would improve with more time
+
