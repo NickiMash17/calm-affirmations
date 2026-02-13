@@ -23,11 +23,29 @@ export async function generateAffirmation(
     );
   }
 
-  const response = await fetch(`${API_BASE}/api/affirmation`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
+  const controller = new AbortController();
+  const timeoutMs = 15000;
+  const timeoutId = window.setTimeout(() => controller.abort(), timeoutMs);
+  let response: Response;
+
+  try {
+    response = await fetch(`${API_BASE}/api/affirmation`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+      signal: controller.signal,
+    });
+  } catch (err) {
+    if (err instanceof DOMException && err.name === "AbortError") {
+      throw new Error("The request took too long. Please try again.");
+    }
+    if (err instanceof TypeError) {
+      throw new Error("We couldn't reach the affirmation service. Please try again.");
+    }
+    throw err;
+  } finally {
+    window.clearTimeout(timeoutId);
+  }
 
   if (!response.ok) {
     let message = "Something unexpected happened. Please try again in a moment.";

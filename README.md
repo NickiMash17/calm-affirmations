@@ -62,6 +62,8 @@ Backend (`backend/.env`):
 ```env
 OPENAI_API_KEY=your_key_here
 OPENAI_MODEL=gpt-4.1-mini
+OPENAI_TIMEOUT=20
+OPENAI_MAX_RETRIES=2
 ALLOWED_ORIGINS=https://your-frontend-domain.vercel.app
 ```
 
@@ -109,7 +111,7 @@ npm run dev:frontend
 ## Deployment Checklist
 
 Backend:
-- Set `OPENAI_API_KEY`, `OPENAI_MODEL`, `ALLOWED_ORIGINS`
+- Set `OPENAI_API_KEY`, `OPENAI_MODEL`, `OPENAI_TIMEOUT`, `OPENAI_MAX_RETRIES`, `ALLOWED_ORIGINS`
 - Start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
 - Verify `/docs` and `/healthz`
 

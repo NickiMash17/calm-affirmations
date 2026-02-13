@@ -7,7 +7,11 @@ from app.core.safety import INSTRUCTIONS, SAFE_FALLBACK
 class AffirmationService:
     def __init__(self) -> None:
         settings.validate()
-        self._client = OpenAI(api_key=settings.openai_api_key)
+        self._client = OpenAI(
+            api_key=settings.openai_api_key,
+            timeout=settings.openai_timeout,
+            max_retries=settings.openai_max_retries,
+        )
         self._model = settings.openai_model
 
     def create(self, name: str, feeling: str) -> str:
