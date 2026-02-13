@@ -5,14 +5,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 const FEELING_PRESETS = [
-  { label: "Anxious", emoji: "??" },
-  { label: "Overwhelmed", emoji: "??" },
-  { label: "Lonely", emoji: "??" },
-  { label: "Grateful", emoji: "??" },
-  { label: "Hopeful", emoji: "??" },
-  { label: "Exhausted", emoji: "??" },
-  { label: "Peaceful", emoji: "???" },
-  { label: "Stressed", emoji: "?????" },
+  { label: "Anxious", emoji: "😟" },
+  { label: "Overwhelmed", emoji: "🌊" },
+  { label: "Lonely", emoji: "🌙" },
+  { label: "Grateful", emoji: "🙏" },
+  { label: "Hopeful", emoji: "🌱" },
+  { label: "Exhausted", emoji: "🥱" },
+  { label: "Peaceful", emoji: "🕊️" },
+  { label: "Stressed", emoji: "😮‍💨" },
 ];
 
 interface Props {

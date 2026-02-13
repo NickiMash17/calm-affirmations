@@ -221,7 +221,7 @@
   }
 
   .feeling-chip-inactive:hover:not(:disabled) {
-    @apply bg-accent text-accent-foreground border-accent;
+    @apply bg-primary text-primary-foreground border-primary;
     transform: translateY(-1px);
     box-shadow: 0 2px 8px hsl(var(--glass-shadow));
   }
