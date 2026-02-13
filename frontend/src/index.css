@@ -68,7 +68,7 @@
   }
 
   .dark {
-    --background: 240 8% 10%;
+    --background: 240 10% 4%;
     --foreground: 0 0% 95%;
 
     --card: 240 8% 10%;
@@ -332,6 +332,12 @@
     background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--surface-warm)) 100%);
     background-size: 200% 200%;
     animation: bgBreathe 20s ease-in-out infinite;
+  }
+
+  .dark .aurora-bg {
+    background: hsl(var(--background));
+    background-size: auto;
+    animation: none;
   }
 
   .aurora-bg::before {
