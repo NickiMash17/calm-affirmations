@@ -4,67 +4,67 @@
 
 @layer base {
   :root {
-    --background: 30 20% 98%;
-    --foreground: 24 20% 10%;
+    --background: 200 30% 98%;
+    --foreground: 210 30% 12%;
 
-    --card: 30 20% 99%;
-    --card-foreground: 24 20% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 12%;
 
-    --popover: 30 20% 99%;
-    --popover-foreground: 24 20% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 30% 12%;
 
-    --primary: 173 52% 36%;
-    --primary-foreground: 30 20% 98%;
+    --primary: 198 80% 32%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 30 10% 92%;
-    --secondary-foreground: 24 15% 18%;
+    --secondary: 200 20% 92%;
+    --secondary-foreground: 210 25% 18%;
 
-    --muted: 30 10% 92%;
-    --muted-foreground: 24 10% 35%;
+    --muted: 200 20% 94%;
+    --muted-foreground: 210 15% 38%;
 
-    --accent: 173 25% 88%;
-    --accent-foreground: 173 40% 20%;
+    --accent: 198 45% 90%;
+    --accent-foreground: 198 55% 22%;
 
     --destructive: 20 60% 55%;
     --destructive-foreground: 20 80% 98%;
 
-    --border: 30 10% 86%;
-    --input: 30 10% 86%;
-    --ring: 173 52% 36%;
+    --border: 200 20% 86%;
+    --input: 200 20% 86%;
+    --ring: 198 80% 32%;
 
     --radius: 1rem;
 
     /* Unique tokens */
-    --surface-warm: 30 20% 96%;
+    --surface-warm: 200 20% 96%;
     --success: 160 45% 45%;
     --success-foreground: 160 20% 98%;
     --warning: 35 65% 52%;
     --warning-foreground: 35 85% 12%;
 
     /* Glass tokens */
-    --glass-bg: 30 25% 99% / 0.65;
-    --glass-border: 30 12% 88% / 0.6;
-    --glass-shadow: 173 40% 30% / 0.08;
+    --glass-bg: 200 25% 99% / 0.7;
+    --glass-border: 200 20% 90% / 0.7;
+    --glass-shadow: 198 60% 35% / 0.12;
 
     /* Aurora colors */
-    --aurora-1: 173 55% 70%;
-    --aurora-2: 200 50% 75%;
-    --aurora-3: 140 40% 78%;
-    --aurora-4: 30 35% 88%;
+    --aurora-1: 198 70% 72%;
+    --aurora-2: 210 60% 80%;
+    --aurora-3: 165 45% 82%;
+    --aurora-4: 40 40% 90%;
 
     /* Blob colors */
-    --blob-1: 173 48% 40% / 0.08;
-    --blob-2: 200 50% 65% / 0.06;
-    --blob-3: 140 40% 60% / 0.05;
+    --blob-1: 198 70% 35% / 0.1;
+    --blob-2: 210 60% 55% / 0.08;
+    --blob-3: 165 40% 55% / 0.06;
 
-    --sidebar-background: 30 20% 96%;
-    --sidebar-foreground: 24 15% 18%;
-    --sidebar-primary: 173 52% 36%;
-    --sidebar-primary-foreground: 30 20% 98%;
-    --sidebar-accent: 30 10% 92%;
-    --sidebar-accent-foreground: 24 15% 18%;
-    --sidebar-border: 30 10% 86%;
-    --sidebar-ring: 173 52% 36%;
+    --sidebar-background: 200 25% 96%;
+    --sidebar-foreground: 210 25% 18%;
+    --sidebar-primary: 198 80% 32%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 200 20% 92%;
+    --sidebar-accent-foreground: 210 25% 18%;
+    --sidebar-border: 200 20% 86%;
+    --sidebar-ring: 198 80% 32%;
   }
 
   .dark {
