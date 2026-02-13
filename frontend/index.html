@@ -32,9 +32,56 @@
 
     <style>
       body { margin: 0; }
+
+      #app-loader {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        z-index: 9999;
+        background: linear-gradient(135deg, #fff6fa 0%, #fde8ef 45%, #f7eefc 100%);
+        color: #6b2940;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        transition: opacity 0.35s ease-out;
+      }
+
+      #app-loader .loader-card {
+        text-align: center;
+        padding: 20px 24px;
+        border-radius: 16px;
+        border: 1px solid rgba(247, 109, 147, 0.2);
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(8px);
+      }
+
+      #app-loader .spinner {
+        width: 32px;
+        height: 32px;
+        margin: 0 auto 10px;
+        border-radius: 999px;
+        border: 3px solid rgba(247, 109, 147, 0.22);
+        border-top-color: #f76d93;
+        animation: spin 0.9s linear infinite;
+      }
+
+      #app-loader .text {
+        font-size: 13px;
+        letter-spacing: 0.01em;
+      }
+
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
     </style>
   </head>
   <body>
+    <div id="app-loader" aria-live="polite">
+      <div class="loader-card">
+        <div class="spinner"></div>
+        <div class="text">Loading your calm space...</div>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
