@@ -9,8 +9,10 @@ export default function AppFooter() {
           <Heart className="w-4 h-4 text-primary fill-primary animate-pulse-gentle" />
           <span>for your wellbeing</span>
         </div>
-        <p className="text-xs text-muted-foreground/80">
-          These affirmations complement but don't replace professional mental health support.
+        <p className="text-xs text-muted-foreground/85 max-w-md mx-auto leading-relaxed">
+          This app provides supportive, non-clinical affirmations and is not a substitute for professional care.
+          If you are in crisis or considering self-harm, please seek immediate help from local emergency services
+          or a qualified professional in your area.
         </p>
         <div className="flex items-center justify-center gap-2 text-[10px] text-muted-foreground/70 uppercase tracking-wide">
           <ShieldCheck className="w-3 h-3" strokeWidth={1.5} />
