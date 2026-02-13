@@ -23,6 +23,15 @@
       href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Performance optimizations -->
+    <link rel="dns-prefetch" href="https://calm-affirmations.onrender.com" />
+    <link rel="prefetch" href="/calm-logo.jpeg" as="image" />
+    <link rel="preload" href="/src/main.tsx" as="script" type="module" crossorigin />
+    
+    <!-- Resource hints for better caching -->
+    <meta http-equiv="Cache-Control" content="max-age=31536000, immutable" />
+    <meta name="format-detection" content="telephone=no" />
 
     <meta property="og:title" content="Calm Affirmations" />
     <meta
@@ -52,47 +61,124 @@
         inset: 0;
         display: grid;
         place-items: center;
-        background: #120c14;
-        color: #f6eef2;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+        color: #475569;
         font-family: "Plus Jakarta Sans", system-ui, sans-serif;
         letter-spacing: 0.02em;
         z-index: 9999;
       }
 
       #app-loader .loader-card {
-        padding: 28px 32px;
-        border-radius: 20px;
-        background: linear-gradient(135deg, rgba(247, 109, 147, 0.15), rgba(213, 166, 245, 0.12));
-        border: 1px solid rgba(247, 109, 147, 0.25);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        padding: 40px 48px;
+        border-radius: 24px;
+        background: linear-gradient(135deg, 
+          rgba(247, 109, 147, 0.08), 
+          rgba(213, 166, 245, 0.06),
+          rgba(174, 230, 200, 0.04)
+        );
+        border: 1px solid rgba(247, 109, 147, 0.15);
+        box-shadow: 
+          0 20px 60px rgba(0, 0, 0, 0.08),
+          0 0 120px rgba(247, 109, 147, 0.05),
+          inset 0 1px 0 rgba(255, 255, 255, 0.8);
         text-align: center;
-        min-width: 220px;
+        min-width: 280px;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
       }
 
       #app-loader .brand {
         font-family: "Crimson Pro", Georgia, serif;
-        font-size: 20px;
-        margin: 0 0 10px;
+        font-size: 24px;
+        margin: 0 0 16px;
+        font-weight: 600;
+        background: linear-gradient(135deg, #f76d93, #d5a6f5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
-      #app-loader .pulse {
-        width: 48px;
-        height: 48px;
-        margin: 0 auto 12px;
+      #app-loader .pulse-container {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 20px;
+        position: relative;
+      }
+
+      #app-loader .pulse-ring {
+        position: absolute;
+        inset: 0;
         border-radius: 50%;
-        background: conic-gradient(from 90deg, #f76d93, #d5a6f5, #aee6c8, #f76d93);
-        mask: radial-gradient(circle at center, transparent 55%, black 56%);
-        animation: spin 1.2s linear infinite;
+        border: 2px solid transparent;
+        border-top-color: #f76d93;
+        border-right-color: #d5a6f5;
+        animation: breathe-rotate 3s ease-in-out infinite;
+      }
+
+      #app-loader .pulse-ring:nth-child(2) {
+        animation-delay: 0.5s;
+        border-top-color: #d5a6f5;
+        border-right-color: #aee6c8;
+        transform: scale(0.8);
+      }
+
+      #app-loader .pulse-ring:nth-child(3) {
+        animation-delay: 1s;
+        border-top-color: #aee6c8;
+        border-right-color: #f76d93;
+        transform: scale(0.6);
+      }
+
+      #app-loader .center-heart {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 24px;
+        height: 24px;
+        background: linear-gradient(135deg, #f76d93, #d5a6f5);
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E") center/contain no-repeat;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E") center/contain no-repeat;
+        animation: heartbeat 2s ease-in-out infinite;
       }
 
       #app-loader .hint {
-        font-size: 11px;
-        opacity: 0.7;
+        font-size: 13px;
+        opacity: 0.8;
+        line-height: 1.5;
+        font-weight: 400;
       }
 
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
+      #app-loader .calming-message {
+        margin-top: 12px;
+        font-size: 11px;
+        opacity: 0.6;
+        font-style: italic;
+      }
+
+      @keyframes breathe-rotate {
+        0%, 100% {
+          transform: rotate(0deg) scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: rotate(180deg) scale(1.1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes heartbeat {
+        0%, 100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        25% {
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(0.95);
+        }
+        75% {
+          transform: translate(-50%, -50%) scale(1.05);
         }
       }
     </style>
@@ -101,9 +187,15 @@
   <body>
     <div id="app-loader" aria-live="polite">
       <div class="loader-card">
-        <div class="pulse" aria-hidden="true"></div>
+        <div class="pulse-container">
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring"></div>
+          <div class="center-heart"></div>
+        </div>
         <p class="brand">Calm Affirmations</p>
         <div class="hint">Preparing your calm space...</div>
+        <div class="calming-message">Take a deep breath, you're doing great</div>
       </div>
     </div>
     <div id="root"></div>
