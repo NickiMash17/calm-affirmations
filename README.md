@@ -6,45 +6,38 @@ Production-structured monorepo with a FastAPI backend and a React/Vite frontend.
 
 ```text
 live-mood-architect/
-├─ README.md
-├─ .gitignore
-├─ backend/
-│  ├─ main.py
-│  ├─ requirements.txt
-│  ├─ .env.example
-│  └─ app/
-│     ├─ __init__.py
-│     ├─ core/
-│     │  ├─ config.py
-│     │  └─ safety.py
-│     ├─ routes/
-│     │  ├─ affirmation.py
-│     │  └─ health.py
-│     └─ schemas/
-│        └─ affirmation.py
-└─ frontend/
-   ├─ index.html
-   ├─ package.json
-   ├─ vite.config.js
-   ├─ .env.example
-   └─ src/
-      ├─ main.jsx
-      ├─ App.jsx
-      ├─ api/
-      │  └─ client.js
-      ├─ components/
-      │  ├─ Header.jsx
-      │  ├─ AffirmationForm.jsx
-      │  ├─ ResultCard.jsx
-      │  └─ ErrorBanner.jsx
-      └─ styles/
-         └─ globals.css
++- README.md
++- .gitignore
++- backend/
+�  +- main.py
+�  +- requirements.txt
+�  +- .env.example
+�  +- app/
+�     +- __init__.py
+�     +- core/
+�     �  +- config.py
+�     �  +- safety.py
+�     +- routes/
+�     �  +- affirmation.py
+�     �  +- health.py
+�     +- schemas/
+�        +- affirmation.py
++- frontend/
+   +- index.html
+   +- package.json
+   +- vite.config.ts
+   +- .env.example
+   +- src/
+      +- main.tsx
+      +- App.tsx
+      +- pages/
+      +- components/
+      +- lib/
 ```
 
 Notes:
 - The backend canonical path is `backend/app/routes/affirmation.py`.
 - `backend/app/api/routes/affirmations.py` remains as a compatibility shim.
-- Existing root frontend (`src/`) is kept for compatibility; canonical frontend is `frontend/`.
 
 ## Separation of Concerns
 
@@ -53,7 +46,7 @@ Notes:
 - `backend/app/schemas/affirmation.py`: request/response contracts.
 - `backend/app/routes/affirmation.py`: HTTP-level behavior and status mapping.
 - `backend/app/routes/health.py`: operational health endpoint (`GET /healthz`).
-- `frontend/src/api/client.js`: network client boundary.
+- `frontend/src/lib/api.ts`: network client boundary.
 
 ## Environment Variables
 
@@ -131,4 +124,3 @@ Frontend:
 - Backend URL
 - Screenshot of hosting provider environment variables (secret value blurred)
 - Short note (2-5 bullets): what you would improve with more time
-
