@@ -14,9 +14,9 @@ export default function TopNav() {
           key={link.to}
           to={link.to}
           className="px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs transition-all duration-300
-            border border-border/60 text-muted-foreground/70 bg-background/40
-            hover:text-foreground hover:border-primary/30"
-          activeClassName="text-foreground border-primary/50 bg-accent/60"
+            border border-primary/30 text-primary/80 bg-primary/10
+            hover:text-primary hover:border-primary/50 hover:bg-primary/15"
+          activeClassName="text-primary-foreground border-primary bg-primary"
         >
           {link.label}
         </NavLink>
