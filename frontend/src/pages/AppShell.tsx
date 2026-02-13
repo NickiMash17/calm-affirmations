@@ -10,8 +10,8 @@ export default function AppShell() {
     <div className="min-h-screen flex flex-col aurora-bg">
       <FloatingBlobs />
 
-      <main className="flex-1 flex flex-col items-center justify-start px-4 sm:px-6 pt-6 sm:pt-8 pb-10 relative z-10">
-        <div className="w-full max-w-md sm:max-w-lg">
+      <main className="flex-1 flex flex-col items-center justify-start px-4 sm:px-6 lg:px-10 pt-6 sm:pt-8 pb-12 relative z-10">
+        <div className="w-full max-w-md sm:max-w-2xl lg:max-w-4xl">
           <div className="sr-only" aria-live="polite">
             {location.pathname === "/" && "Home"}
             {location.pathname === "/journal" && "Journal"}
