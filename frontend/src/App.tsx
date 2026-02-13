@@ -35,7 +35,7 @@ const App = () => {
     const loader = document.getElementById("app-loader");
     if (!loader) return;
 
-    const minVisibleMs = 45000;
+    const minVisibleMs = 30000;
 
     const hide = () => {
       loader.style.transition = "opacity 0.5s ease-out";
