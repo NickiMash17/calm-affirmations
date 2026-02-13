@@ -146,13 +146,14 @@ npm run dev:frontend
 
 ## Submission Checklist
 
-- Public GitHub repository link
-- Live URL (frontend)
-- Backend URL
-- Screenshot of hosting provider environment variable configuration (secret value blurred)
-- Short note (2–5 bullets): what you would improve with more time
+- ✅ Public GitHub repository link: https://github.com/NickiMash17/calm-affirmations
+- ✅ Live URL (frontend): https://calm-affirmations-topaz.vercel.app/
+- ✅ Live URL (backend): https://calm-affirmations.onrender.com
+- 📸 Screenshot of hosting provider environment variable configuration (secret value blurred) - *See guides below*
+- ✅ Short note (2–5 bullets): what you would improve with more time
+
 
 ## Author
 
-- **GitHub:** https://github.com/NickiMash
+- **GitHub:** https://github.com/NickiMash17/calm-affirmations
 - **Portfolio:** https://nicmash-porfolio.vercel.app/
