@@ -5,14 +5,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 const FEELING_PRESETS = [
-  { label: "Anxious", emoji: "😟" },
-  { label: "Overwhelmed", emoji: "🌊" },
-  { label: "Lonely", emoji: "🌙" },
-  { label: "Grateful", emoji: "🙏" },
-  { label: "Hopeful", emoji: "🌱" },
-  { label: "Exhausted", emoji: "🥱" },
-  { label: "Peaceful", emoji: "🕊️" },
-  { label: "Stressed", emoji: "😮‍💨" },
+  { label: "Anxious", emoji: "??" },
+  { label: "Overwhelmed", emoji: "??" },
+  { label: "Lonely", emoji: "??" },
+  { label: "Grateful", emoji: "??" },
+  { label: "Hopeful", emoji: "??" },
+  { label: "Exhausted", emoji: "??" },
+  { label: "Peaceful", emoji: "???" },
+  { label: "Stressed", emoji: "?????" },
 ];
 
 interface Props {
@@ -135,7 +135,7 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
       <button
         type="submit"
         disabled={isLoading}
-        className="btn-primary-glow w-full h-13 sm:h-14 rounded-xl text-sm font-medium
+        className="btn-primary-glow w-full h-14 sm:h-14 md:h-16 rounded-xl text-sm sm:text-base font-medium
           bg-primary text-primary-foreground
           focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none
           disabled:opacity-60 disabled:cursor-not-allowed
