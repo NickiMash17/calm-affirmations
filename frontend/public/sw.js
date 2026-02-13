@@ -1,62 +1,43 @@
-const CACHE_NAME = 'calm-affirmations-v1';
-const urlsToCache = [
-  '/',
-  '/calm-logo.jpeg',
-  '/favicon.svg',
-  'https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap'
-];
-
-self.addEventListener('install', (event) => {
+﻿self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(urlsToCache))
+    caches.open('calm-affirmations-v1').then((cache) =>
+      cache.addAll([
+        '/',
+        '/index.html',
+        '/manifest.webmanifest',
+        '/favicon.svg',
+        '/calm-logo.jpeg'
+      ])
+    )
   );
-});
-
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-
-        // Clone the request
-        const fetchRequest = event.request.clone();
-
-        return fetch(fetchRequest).then(
-          (response) => {
-            // Check if valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // Clone the response
-            const responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          }
-        );
-      })
-  );
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys.map((key) => (key !== 'calm-affirmations-v1' ? caches.delete(key) : null))
+      )
+    )
+  );
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
+
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      const fetchPromise = fetch(event.request)
+        .then((response) => {
+          const copy = response.clone();
+          caches.open('calm-affirmations-v1').then((cache) => cache.put(event.request, copy));
+          return response;
         })
-      );
+        .catch(() => cached);
+
+      return cached || fetchPromise;
     })
   );
 });

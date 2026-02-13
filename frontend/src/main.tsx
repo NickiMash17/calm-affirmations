@@ -13,3 +13,24 @@ root.render(
     <App />
   </Suspense>
 );
+
+// Register service worker for PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then((registration) => {
+      const onUpdateFound = () => {
+        const installingWorker = registration.installing;
+        if (!installingWorker) return;
+        installingWorker.onstatechange = () => {
+          if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            if (window.confirm('A new version is available. Reload now?')) {
+              window.location.reload();
+            }
+          }
+        };
+      };
+
+      registration.addEventListener('updatefound', onUpdateFound);
+    });
+  });
+}
