@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import AppHeader from "@/components/AppHeader";
 import AffirmationForm from "@/components/AffirmationForm.tsx";
 import AffirmationResult from "@/components/AffirmationResult";
@@ -17,10 +17,28 @@ const Index = () => {
   const [error, setError] = useState<string | null>(null);
   const [lastSubmit, setLastSubmit] = useState<{ name: string; feeling: string } | null>(null);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [elapsedMs, setElapsedMs] = useState(0);
+  const loadingStartRef = useRef<number | null>(null);
 
   useEffect(() => {
     setHistory(loadHistory());
   }, []);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setElapsedMs(0);
+      loadingStartRef.current = null;
+      return;
+    }
+
+    loadingStartRef.current = Date.now();
+    const id = window.setInterval(() => {
+      if (!loadingStartRef.current) return;
+      setElapsedMs(Date.now() - loadingStartRef.current);
+    }, 300);
+
+    return () => window.clearInterval(id);
+  }, [isLoading]);
 
   const handleSubmit = useCallback(async (name: string, feeling: string) => {
     setIsLoading(true);
@@ -68,7 +86,7 @@ const Index = () => {
             <AffirmationForm onSubmit={handleSubmit} isLoading={isLoading} />
           </div>
 
-          {isLoading && <LoadingShimmer />}
+          {isLoading && <LoadingShimmer elapsedMs={elapsedMs} />}
           {affirmation && lastSubmit && (
             <AffirmationResult affirmation={affirmation} name={lastSubmit.name} />
           )}

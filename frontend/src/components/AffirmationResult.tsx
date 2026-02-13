@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function AffirmationResult({ affirmation, name }: Props) {
-  const { displayed, isDone } = useTypewriter(affirmation, 90);
+  const { displayed, isDone } = useTypewriter(affirmation, 50);
 
   return (
     <div className="animate-scale-in mt-6">
