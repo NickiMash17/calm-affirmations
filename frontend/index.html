@@ -4,8 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calm Affirmations</title>
-    <meta name="description" content="Personalized, supportive affirmations based on how you feel." />
-    <meta name="keywords" content="affirmations, mental wellness, self care, calm, mood, supportive messages" />
+    <meta
+      name="description"
+      content="Personalized, supportive affirmations based on how you feel."
+    />
+    <meta
+      name="keywords"
+      content="affirmations, mental wellness, self care, calm, mood, supportive messages"
+    />
     <meta name="author" content="Calm Affirmations" />
     <meta name="theme-color" content="#f76d93" />
     <link rel="canonical" href="https://calm-affirmations-topaz.vercel.app/" />
@@ -14,12 +20,20 @@
     <link rel="apple-touch-icon" href="/calm-logo.jpeg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="dns-prefetch" href="https://calm-affirmations.onrender.com" />
+    <link rel="prefetch" href="/calm-logo.jpeg" as="image" />
     <meta name="format-detection" content="telephone=no" />
 
     <meta property="og:title" content="Calm Affirmations" />
-    <meta property="og:description" content="Personalized, supportive affirmations based on how you feel." />
+    <meta
+      property="og:description"
+      content="Personalized, supportive affirmations based on how you feel."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calm-affirmations-topaz.vercel.app/" />
     <meta property="og:image" content="https://calm-affirmations-topaz.vercel.app/calm-logo.jpeg" />
@@ -27,62 +41,235 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Calm Affirmations" />
-    <meta name="twitter:description" content="Personalized, supportive affirmations based on how you feel." />
+    <meta
+      name="twitter:description"
+      content="Personalized, supportive affirmations based on how you feel."
+    />
     <meta name="twitter:image" content="https://calm-affirmations-topaz.vercel.app/calm-logo.jpeg" />
 
     <style>
-      body { margin: 0; }
+      body {
+        margin: 0;
+      }
 
       #app-loader {
         position: fixed;
         inset: 0;
         display: grid;
         place-items: center;
-        z-index: 9999;
-        background: linear-gradient(135deg, #fff6fa 0%, #fde8ef 45%, #f7eefc 100%);
-        color: #6b2940;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+        color: #475569;
         font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        letter-spacing: 0.02em;
+        z-index: 9999;
         transition: opacity 0.35s ease-out;
       }
 
       #app-loader .loader-card {
+        padding: 32px 40px;
+        border-radius: 20px;
+        background: linear-gradient(135deg,
+          rgba(247, 109, 147, 0.08),
+          rgba(213, 166, 245, 0.06),
+          rgba(174, 230, 200, 0.04)
+        );
+        border: 1px solid rgba(247, 109, 147, 0.15);
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.08),
+          0 0 120px rgba(247, 109, 147, 0.05),
+          inset 0 1px 0 rgba(255, 255, 255, 0.8);
         text-align: center;
-        padding: 20px 24px;
-        border-radius: 16px;
-        border: 1px solid rgba(247, 109, 147, 0.2);
-        background: rgba(255, 255, 255, 0.65);
-        backdrop-filter: blur(8px);
+        min-width: 260px;
+        max-width: 90vw;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
       }
 
-      #app-loader .spinner {
-        width: 32px;
-        height: 32px;
-        margin: 0 auto 10px;
-        border-radius: 999px;
-        border: 3px solid rgba(247, 109, 147, 0.22);
+      #app-loader .brand {
+        font-family: "Crimson Pro", Georgia, serif;
+        font-size: 24px;
+        margin: 0 0 16px;
+        font-weight: 600;
+        background: linear-gradient(135deg, #f76d93, #d5a6f5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      #app-loader .pulse-container {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 16px;
+        position: relative;
+      }
+
+      #app-loader .pulse-ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 2px solid transparent;
         border-top-color: #f76d93;
-        animation: spin 0.9s linear infinite;
+        border-right-color: #d5a6f5;
+        animation: breathe-rotate 2.5s ease-in-out infinite;
       }
 
-      #app-loader .text {
-        font-size: 13px;
-        letter-spacing: 0.01em;
+      #app-loader .pulse-ring:nth-child(2) {
+        animation-delay: 0.4s;
+        border-top-color: #d5a6f5;
+        border-right-color: #aee6c8;
+        transform: scale(0.8);
       }
 
-      @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+      #app-loader .pulse-ring:nth-child(3) {
+        animation-delay: 0.8s;
+        border-top-color: #aee6c8;
+        border-right-color: #f76d93;
+        transform: scale(0.6);
+      }
+
+      #app-loader .center-heart {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(135deg, #f76d93, #d5a6f5);
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E") center/contain no-repeat;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E") center/contain no-repeat;
+        animation: heartbeat 1.8s ease-in-out infinite;
+      }
+
+      #app-loader .hint {
+        font-size: 12px;
+        opacity: 0.8;
+        line-height: 1.5;
+        font-weight: 400;
+      }
+
+      #app-loader .calming-message {
+        margin-top: 10px;
+        font-size: 10px;
+        opacity: 0.6;
+        font-style: italic;
+      }
+
+      @media (min-width: 768px) {
+        #app-loader .loader-card {
+          padding: 36px 44px;
+          min-width: 300px;
+        }
+
+        #app-loader .pulse-container {
+          width: 64px;
+          height: 64px;
+          margin: 0 auto 20px;
+        }
+
+        #app-loader .brand {
+          font-size: 24px;
+          margin: 0 0 16px;
+        }
+
+        #app-loader .hint {
+          font-size: 13px;
+        }
+
+        #app-loader .calming-message {
+          font-size: 11px;
+          margin-top: 12px;
+        }
+
+        #app-loader .center-heart {
+          width: 24px;
+          height: 24px;
+        }
+
+        #app-loader .pulse-ring {
+          animation-duration: 3s;
+        }
+
+        #app-loader .pulse-ring:nth-child(2) {
+          animation-delay: 0.5s;
+        }
+
+        #app-loader .pulse-ring:nth-child(3) {
+          animation-delay: 1s;
+        }
+
+        #app-loader .center-heart {
+          animation-duration: 2s;
+        }
+      }
+
+      @keyframes breathe-rotate {
+        0%, 100% {
+          transform: rotate(0deg) scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: rotate(180deg) scale(1.1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes heartbeat {
+        0%, 100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        25% {
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(0.95);
+        }
+        75% {
+          transform: translate(-50%, -50%) scale(1.05);
+        }
       }
     </style>
   </head>
+
   <body>
     <div id="app-loader" aria-live="polite">
       <div class="loader-card">
-        <div class="spinner"></div>
-        <div class="text">Loading your calm space...</div>
+        <div class="pulse-container">
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring"></div>
+          <div class="center-heart"></div>
+        </div>
+        <p class="brand">Calm Affirmations</p>
+        <div class="hint">Preparing your calm space...</div>
+        <div class="calming-message">Take a deep breath, you're doing great</div>
       </div>
     </div>
     <div id="root"></div>
+    <script>
+      (function () {
+        var BOOT_FLAG = "__CALM_APP_BOOTED__";
+
+        function hideLoader() {
+          var loader = document.getElementById("app-loader");
+          if (!loader) return;
+          loader.style.opacity = "0";
+          loader.style.pointerEvents = "none";
+          window.setTimeout(function () {
+            if (loader.parentNode) loader.remove();
+          }, 360);
+        }
+
+        window.addEventListener("load", function () {
+          window.setTimeout(hideLoader, 1400);
+        });
+
+        window.setTimeout(function () {
+          if (!window[BOOT_FLAG]) {
+            hideLoader();
+          }
+        }, 5000);
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
