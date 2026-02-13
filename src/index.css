@@ -364,3 +364,23 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+
+@keyframes breatheCircleIn {
+  from { transform: scale(1); opacity: 0.4; }
+  to { transform: scale(1.15); opacity: 0.8; }
+}
+
+@keyframes breatheCircleOut {
+  from { transform: scale(1.15); opacity: 0.8; }
+  to { transform: scale(1); opacity: 0.4; }
+}
+
+@keyframes breatheGlow {
+  from { transform: scale(1); box-shadow: 0 0 8px hsl(172 50% 48% / 0.1); }
+  to { transform: scale(1.2); box-shadow: 0 0 30px hsl(172 50% 48% / 0.25); }
+}
+
+@keyframes breatheShrink {
+  from { transform: scale(1.2); box-shadow: 0 0 30px hsl(172 50% 48% / 0.25); }
+  to { transform: scale(1); box-shadow: 0 0 8px hsl(172 50% 48% / 0.1); }
+}
