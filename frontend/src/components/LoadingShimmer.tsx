@@ -29,6 +29,9 @@ export default function LoadingShimmer({ elapsedMs }: Props) {
         <div className="h-8 rounded-xl animate-shimmer w-full" />
         <div className="h-6 rounded-xl animate-shimmer w-5/6" style={{ animationDelay: "0.2s" }} />
         <div className="h-6 rounded-xl animate-shimmer w-3/4" style={{ animationDelay: "0.4s" }} />
+        <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+          <div className="h-full w-2/3 bg-primary/70 animate-shimmer" />
+        </div>
       </div>
       <p className="text-sm text-muted-foreground/70 text-center animate-pulse-gentle" key={pulse % 2}>
         {message}

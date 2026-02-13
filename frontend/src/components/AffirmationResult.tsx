@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function AffirmationResult({ affirmation, name }: Props) {
-  const { displayed, isDone } = useTypewriter(affirmation, 50);
+  const { displayed, isDone } = useTypewriter(affirmation, 35);
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
 
