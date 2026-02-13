@@ -35,7 +35,9 @@ const App = () => {
     const loader = document.getElementById("app-loader");
     if (!loader) return;
 
-    requestAnimationFrame(() => {
+    const minVisibleMs = 30000;
+
+    const hide = () => {
       loader.style.transition = "opacity 0.5s ease-out";
       loader.style.opacity = "0";
       loader.style.pointerEvents = "none";
@@ -43,7 +45,13 @@ const App = () => {
       window.setTimeout(() => {
         loader.remove();
       }, 500);
-    });
+    };
+
+    const timeoutId = window.setTimeout(() => {
+      requestAnimationFrame(hide);
+    }, minVisibleMs);
+
+    return () => window.clearTimeout(timeoutId);
   }, []);
 
   return (
