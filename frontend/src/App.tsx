@@ -1,9 +1,9 @@
-import { Toaster } from "@/components/ui/toaster";
+﻿import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import AppShell from "@/pages/AppShell";
 import NotFound from "@/pages/NotFound";
 
@@ -30,44 +30,61 @@ const queryClient = new QueryClient({
   },
 });
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route element={<AppShell />}>
-            <Route 
-              path="/" 
-              element={
-                <Suspense fallback={<PageLoader />}>
-                  <HomePage />
-                </Suspense>
-              } 
-            />
-            <Route 
-              path="/journal" 
-              element={
-                <Suspense fallback={<PageLoader />}>
-                  <JournalPage />
-                </Suspense>
-              } 
-            />
-            <Route 
-              path="/resources" 
-              element={
-                <Suspense fallback={<PageLoader />}>
-                  <ResourcesPage />
-                </Suspense>
-              } 
-            />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  useEffect(() => {
+    const loader = document.getElementById("app-loader");
+    if (!loader) return;
+
+    requestAnimationFrame(() => {
+      loader.style.transition = "opacity 0.5s ease-out";
+      loader.style.opacity = "0";
+      loader.style.pointerEvents = "none";
+
+      window.setTimeout(() => {
+        loader.remove();
+      }, 500);
+    });
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AppShell />}>
+              <Route 
+                path="/" 
+                element={
+                  <Suspense fallback={<PageLoader />}>
+                    <HomePage />
+                  </Suspense>
+                } 
+              />
+              <Route 
+                path="/journal" 
+                element={
+                  <Suspense fallback={<PageLoader />}>
+                    <JournalPage />
+                  </Suspense>
+                } 
+              />
+              <Route 
+                path="/resources" 
+                element={
+                  <Suspense fallback={<PageLoader />}>
+                    <ResourcesPage />
+                  </Suspense>
+                } 
+              />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
