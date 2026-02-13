@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 
 interface Props {
   elapsedMs: number;
@@ -25,7 +25,7 @@ export default function LoadingShimmer({ elapsedMs }: Props) {
           <img 
             src="/calm-logo.jpeg" 
             alt="Calm Affirmations Logo" 
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover animate-breathe"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover animate-breathe scale-[1.1]"
           />
         </div>
       </div>

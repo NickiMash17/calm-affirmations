@@ -8,7 +8,7 @@ export default function AppHeader() {
           <img 
             src="/calm-logo.jpeg" 
             alt="Calm Affirmations Logo" 
-            className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full object-cover shadow-md"
+            className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full object-cover shadow-md scale-[1.08]"
           />
         </div>
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-foreground tracking-tight leading-none">

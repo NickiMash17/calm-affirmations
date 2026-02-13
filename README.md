@@ -17,6 +17,17 @@ Calm Affirmations is a gentle, supportive space that turns a user's name and fee
 * Backend: https://calm-affirmations.onrender.com
 
 ## Tech Stack
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+
 * Frontend: React + Vite + TypeScript, Tailwind CSS, shadcn/ui
 * Backend: Python + FastAPI
 * AI: OpenAI API
@@ -143,7 +154,7 @@ Frontend (Vercel)
 * ✅ Short note (2–5 bullets): what you would improve with more time
 
 ## Author
-Nicolette Mashaba  
+Built by Nicki Mashaba  
 GitHub: https://github.com/NickiMash17  
 Portfolio: https://nicmash-porfolio.vercel.app/
 
