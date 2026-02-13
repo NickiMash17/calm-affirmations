@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -22,7 +22,7 @@
     --muted: 345 35% 94%;
     --muted-foreground: 340 12% 40%;
 
-    --accent: 150 40% 78%;
+    --accent: 330 70% 80%;
     --accent-foreground: 340 18% 18%;
 
     --destructive: 20 60% 55%;
@@ -36,8 +36,8 @@
 
     /* Enhanced unique tokens */
     --surface-warm: 35 70% 95%;
-    --success: 160 45% 45%;
-    --success-foreground: 160 20% 98%;
+    --success: 340 60% 50%;
+    --success-foreground: 0 0% 100%;
     --warning: 35 65% 52%;
     --warning-foreground: 35 85% 12%;
 
@@ -49,13 +49,13 @@
     /* Enhanced aurora colors with better harmony */
     --aurora-1: 350 90% 72%;
     --aurora-2: 285 60% 84%;
-    --aurora-3: 150 50% 82%;
+    --aurora-3: 330 70% 82%;
     --aurora-4: 35 95% 94%;
 
     /* Refined blob colors */
     --blob-1: 350 85% 68% / 0.18;
     --blob-2: 285 60% 82% / 0.16;
-    --blob-3: 150 50% 80% / 0.14;
+    --blob-3: 330 70% 80% / 0.14;
 
     --sidebar-background: 345 50% 96%;
     --sidebar-foreground: 340 18% 18%;
@@ -86,7 +86,7 @@
     --muted: 240 6% 18%;
     --muted-foreground: 240 5% 70%;
 
-    --accent: 158 45% 55%;
+    --accent: 330 55% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 65% 55%;
@@ -104,13 +104,13 @@
     /* Dark mode aurora (subtle, no brown cast) */
     --aurora-1: 346 70% 45%;
     --aurora-2: 280 60% 50%;
-    --aurora-3: 158 50% 45%;
+    --aurora-3: 330 50% 55%;
     --aurora-4: 240 10% 15%;
 
     /* Dark mode blobs */
     --blob-1: 346 70% 45% / 0.18;
     --blob-2: 280 60% 50% / 0.16;
-    --blob-3: 158 50% 45% / 0.14;
+    --blob-3: 330 50% 55% / 0.14;
 
     --sidebar-background: 240 10% 5%;
     --sidebar-foreground: 0 0% 95%;
@@ -593,3 +593,4 @@
     animation: none;
   }
 }
+
