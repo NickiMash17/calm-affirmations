@@ -5,12 +5,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 const FEELING_PRESETS = [
-  { label: "Anxious", emoji: "😟" },
-  { label: "Overwhelmed", emoji: "🌊" },
-  { label: "Lonely", emoji: "🌙" },
-  { label: "Grateful", emoji: "🙏" },
-  { label: "Hopeful", emoji: "🌱" },
-  { label: "Exhausted", emoji: "🫠" },
+  { label: "Anxious", emoji: "??" },
+  { label: "Overwhelmed", emoji: "??" },
+  { label: "Lonely", emoji: "??" },
+  { label: "Grateful", emoji: "??" },
+  { label: "Hopeful", emoji: "??" },
+  { label: "Exhausted", emoji: "??" },
 ];
 
 interface Props {
@@ -74,7 +74,7 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
             placeholder:text-muted-foreground/50"
         />
         {errors.name && (
-          <p id="name-error" className="text-sm text-warning animate-fade-in-up" role="alert" style={{ animationDuration: '0.3s' }}>
+          <p id="name-error" className="text-sm text-warning animate-fade-in-up" role="alert" style={{ animationDuration: "0.3s" }}>
             {errors.name}
           </p>
         )}
@@ -93,7 +93,7 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
               disabled={isLoading}
               className={`feeling-chip ${
                 feeling === label ? "feeling-chip-active" : "feeling-chip-inactive"
-              }`}
+              } text-[11px] sm:text-xs`}
             >
               <span className="mr-1">{emoji}</span> {label}
             </button>
@@ -101,7 +101,7 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
         </div>
         <Textarea
           id="feeling"
-          placeholder="Or describe what's on your mind…"
+          placeholder="Or describe what's on your mind..."
           value={feeling}
           onChange={(e) => {
             setFeeling(e.target.value);
@@ -118,7 +118,7 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
         />
         <div className="flex justify-between items-center">
           {errors.feeling ? (
-            <p id="feeling-error" className="text-sm text-warning animate-fade-in-up" role="alert" style={{ animationDuration: '0.3s' }}>
+            <p id="feeling-error" className="text-sm text-warning animate-fade-in-up" role="alert" style={{ animationDuration: "0.3s" }}>
               {errors.feeling}
             </p>
           ) : (
@@ -140,7 +140,7 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
         {isLoading ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin" />
-            <span>Creating something supportive for you…</span>
+            <span>Creating something supportive for you...</span>
           </>
         ) : (
           <>

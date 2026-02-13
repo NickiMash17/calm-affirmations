@@ -364,3 +364,28 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+
+@media (max-width: 640px) {
+  .aurora-bg::before {
+    inset: -80%;
+  }
+
+  .floating-blob {
+    filter: blur(40px);
+  }
+
+  .blob-1 {
+    width: 220px;
+    height: 220px;
+  }
+
+  .blob-2 {
+    width: 190px;
+    height: 190px;
+  }
+
+  .blob-3 {
+    width: 160px;
+    height: 160px;
+  }
+}

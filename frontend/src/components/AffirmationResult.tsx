@@ -21,7 +21,7 @@ export default function AffirmationResult({ affirmation, name }: Props) {
             </p>
             {isDone && (
               <p className="text-[11px] text-muted-foreground/70 animate-fade-in tracking-wide uppercase">
-                — crafted for {name}
+                crafted for {name}
               </p>
             )}
           </div>

@@ -51,14 +51,14 @@ export default function AffirmationHistory({ entries, onClear }: Props) {
           <div
             key={entry.id}
             className="history-item animate-fade-in-up"
-            style={{ animationDelay: `${i * 0.08}s`, animationFillMode: 'backwards' }}
+            style={{ animationDelay: `${i * 0.08}s`, animationFillMode: "backwards" }}
           >
             <div className="glass-card rounded-xl p-4 space-y-1.5">
               <p className="text-foreground/90 text-sm leading-relaxed font-light line-clamp-3">
                 "{entry.affirmation}"
               </p>
               <div className="flex items-center justify-between text-[10px] text-muted-foreground/50">
-                <span>for {entry.name} · {entry.feeling}</span>
+                <span>for {entry.name} - {entry.feeling}</span>
                 <span>{timeAgo(entry.timestamp)}</span>
               </div>
             </div>
@@ -73,7 +73,7 @@ export default function AffirmationHistory({ entries, onClear }: Props) {
             transition-colors duration-300 flex items-center justify-center gap-1
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg py-2"
         >
-          <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${expanded ? 'rotate-180' : ''}`} />
+          <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`} />
           {expanded ? "Show less" : `Show ${entries.length - 3} more`}
         </button>
       )}

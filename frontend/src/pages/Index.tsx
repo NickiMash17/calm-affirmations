@@ -60,11 +60,11 @@ const Index = () => {
       <FloatingBlobs />
       <ThemeToggle />
 
-      <main className="flex-1 flex flex-col items-center justify-start px-4 relative z-10">
+      <main className="flex-1 flex flex-col items-center justify-start px-3 sm:px-6 pb-10 relative z-10">
         <AppHeader />
 
-        <div className="w-full max-w-md">
-          <div className="glass-card rounded-2xl p-6 sm:p-8">
+        <div className="w-full max-w-md sm:max-w-lg">
+          <div className="glass-card rounded-2xl p-5 sm:p-8">
             <AffirmationForm onSubmit={handleSubmit} isLoading={isLoading} />
           </div>
 
