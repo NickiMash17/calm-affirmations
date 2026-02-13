@@ -3,6 +3,8 @@ import AppHeader from "@/components/AppHeader";
 import AffirmationForm from "@/components/AffirmationForm.tsx";
 import AffirmationResult from "@/components/AffirmationResult";
 import AffirmationHistory from "@/components/AffirmationHistory";
+import DailyJournal from "@/components/DailyJournal";
+import ResourcesPanel from "@/components/ResourcesPanel";
 import ErrorMessage from "@/components/ErrorMessage";
 import LoadingShimmer from "@/components/LoadingShimmer";
 import AppFooter from "@/components/AppFooter";
@@ -93,6 +95,8 @@ const Index = () => {
           {error && <ErrorMessage message={error} onRetry={handleRetry} />}
 
           <AffirmationHistory entries={history} onClear={handleClearHistory} />
+          <DailyJournal />
+          <ResourcesPanel />
         </div>
       </main>
 
