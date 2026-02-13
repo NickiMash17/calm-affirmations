@@ -25,11 +25,72 @@
     <meta property="og:type" content="website" />
 
     <meta name="twitter:card" content="summary_large_image" />
+
+    <style>
+      body {
+        margin: 0;
+      }
+
+      #app-loader {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        background: #120c14;
+        color: #f6eef2;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        letter-spacing: 0.02em;
+        z-index: 9999;
+      }
+
+      #app-loader .loader-card {
+        padding: 28px 32px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(247, 109, 147, 0.15), rgba(213, 166, 245, 0.12));
+        border: 1px solid rgba(247, 109, 147, 0.25);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        text-align: center;
+        min-width: 220px;
+      }
+
+      #app-loader .brand {
+        font-family: "Crimson Pro", Georgia, serif;
+        font-size: 20px;
+        margin: 0 0 10px;
+      }
+
+      #app-loader .pulse {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 12px;
+        border-radius: 50%;
+        background: conic-gradient(from 90deg, #f76d93, #d5a6f5, #aee6c8, #f76d93);
+        mask: radial-gradient(circle at center, transparent 55%, black 56%);
+        animation: spin 1.2s linear infinite;
+      }
+
+      #app-loader .hint {
+        font-size: 11px;
+        opacity: 0.7;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
 
   <body>
+    <div id="app-loader" aria-live="polite">
+      <div class="loader-card">
+        <div class="pulse" aria-hidden="true"></div>
+        <p class="brand">Live Mood Architect</p>
+        <div class="hint">Preparing your calm space...</div>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
