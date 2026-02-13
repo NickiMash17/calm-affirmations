@@ -19,7 +19,7 @@ A full-stack AI web app that generates short, supportive therapeutic affirmation
 ## Tech Stack
 
 - **Frontend:** React + Vite + TypeScript, Tailwind CSS, shadcn/ui
-- **Backend:** FastAPI (Python)
+- **Backend:** Python + FastAPI
 - **AI:** OpenAI API
 - **Deploy:** Vercel (frontend), Render (backend)
 
