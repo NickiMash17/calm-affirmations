@@ -5,6 +5,7 @@ import AffirmationResult from "@/components/AffirmationResult";
 import AffirmationHistory from "@/components/AffirmationHistory";
 import ErrorMessage from "@/components/ErrorMessage";
 import LoadingShimmer from "@/components/LoadingShimmer";
+import BreathingWidget from "@/components/BreathingWidget";
 import AppFooter from "@/components/AppFooter";
 import ThemeToggle from "@/components/ThemeToggle";
 import FloatingBlobs from "@/components/FloatingBlobs";
@@ -60,15 +61,20 @@ const Index = () => {
       <FloatingBlobs />
       <ThemeToggle />
 
-      <main className="flex-1 flex flex-col items-center justify-start px-4 relative z-10">
+      <main className="flex-1 flex flex-col items-center justify-start px-3 sm:px-4 relative z-10">
         <AppHeader />
 
         <div className="w-full max-w-md">
-          <div className="glass-card rounded-2xl p-6 sm:p-8">
+          <div className="glass-card rounded-2xl p-5 sm:p-8">
             <AffirmationForm onSubmit={handleSubmit} isLoading={isLoading} />
           </div>
 
-          {isLoading && <LoadingShimmer />}
+          {isLoading && (
+            <>
+              <LoadingShimmer />
+              <BreathingWidget />
+            </>
+          )}
           {affirmation && lastSubmit && (
             <AffirmationResult affirmation={affirmation} name={lastSubmit.name} />
           )}

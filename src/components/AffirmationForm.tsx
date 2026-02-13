@@ -84,18 +84,18 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
         <Label htmlFor="feeling" className="text-sm font-medium text-foreground/80 tracking-wide uppercase text-[11px]">
           How are you feeling?
         </Label>
-        <div className="flex flex-wrap gap-2" role="group" aria-label="Quick feeling options">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2" role="group" aria-label="Quick feeling options">
           {FEELING_PRESETS.map(({ label, emoji }) => (
             <button
               key={label}
               type="button"
               onClick={() => selectPreset(label)}
               disabled={isLoading}
-              className={`feeling-chip ${
+              className={`feeling-chip text-[11px] sm:text-xs ${
                 feeling === label ? "feeling-chip-active" : "feeling-chip-inactive"
               }`}
             >
-              <span className="mr-1">{emoji}</span> {label}
+              <span className="mr-0.5 sm:mr-1">{emoji}</span> {label}
             </button>
           ))}
         </div>
