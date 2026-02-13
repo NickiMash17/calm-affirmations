@@ -151,10 +151,10 @@ Frontend (Vercel)
 * ✅ Live URL (frontend): https://calm-affirmations-topaz.vercel.app/
 * ✅ Live URL (backend): https://calm-affirmations.onrender.com
 * Screenshot of hosting provider environment variable configuration (secret value blurred) – attached in submission.
-* ✅ Short note (2–5 bullets): what you would improve with more time
+* ✅ Short note (2–5 bullets): what I would improve with more time
 
 ## Author
-Built by Nicki Mashaba  
+Built by Nicolette Mashaba  
 GitHub: https://github.com/NickiMash17  
 Portfolio: https://nicmash-porfolio.vercel.app/
 
