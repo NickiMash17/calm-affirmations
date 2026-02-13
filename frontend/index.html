@@ -28,7 +28,6 @@
     <!-- Performance optimizations -->
     <link rel="dns-prefetch" href="https://calm-affirmations.onrender.com" />
     <link rel="prefetch" href="/calm-logo.jpeg" as="image" />
-    <link rel="preload" href="/src/main.tsx" as="script" type="module" crossorigin />
     
     <!-- Resource hints for better caching -->
     <meta http-equiv="Cache-Control" content="max-age=31536000, immutable" />
@@ -70,8 +69,8 @@
       }
 
       #app-loader .loader-card {
-        padding: 40px 48px;
-        border-radius: 24px;
+        padding: 32px 40px;
+        border-radius: 20px;
         background: linear-gradient(135deg, 
           rgba(247, 109, 147, 0.08), 
           rgba(213, 166, 245, 0.06),
@@ -83,7 +82,8 @@
           0 0 120px rgba(247, 109, 147, 0.05),
           inset 0 1px 0 rgba(255, 255, 255, 0.8);
         text-align: center;
-        min-width: 280px;
+        min-width: 260px;
+        max-width: 90vw;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
       }
@@ -100,9 +100,9 @@
       }
 
       #app-loader .pulse-container {
-        width: 64px;
-        height: 64px;
-        margin: 0 auto 20px;
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 16px;
         position: relative;
       }
 
@@ -113,18 +113,18 @@
         border: 2px solid transparent;
         border-top-color: #f76d93;
         border-right-color: #d5a6f5;
-        animation: breathe-rotate 3s ease-in-out infinite;
+        animation: breathe-rotate 2.5s ease-in-out infinite;
       }
 
       #app-loader .pulse-ring:nth-child(2) {
-        animation-delay: 0.5s;
+        animation-delay: 0.4s;
         border-top-color: #d5a6f5;
         border-right-color: #aee6c8;
         transform: scale(0.8);
       }
 
       #app-loader .pulse-ring:nth-child(3) {
-        animation-delay: 1s;
+        animation-delay: 0.8s;
         border-top-color: #aee6c8;
         border-right-color: #f76d93;
         transform: scale(0.6);
@@ -135,26 +135,86 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
         background: linear-gradient(135deg, #f76d93, #d5a6f5);
         mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E") center/contain no-repeat;
         -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E") center/contain no-repeat;
-        animation: heartbeat 2s ease-in-out infinite;
+        animation: heartbeat 1.8s ease-in-out infinite;
+      }
+
+      #app-loader .brand {
+        font-family: "Crimson Pro", Georgia, serif;
+        font-size: 20px;
+        margin: 0 0 12px;
+        font-weight: 600;
+        background: linear-gradient(135deg, #f76d93, #d5a6f5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       #app-loader .hint {
-        font-size: 13px;
+        font-size: 12px;
         opacity: 0.8;
         line-height: 1.5;
         font-weight: 400;
       }
 
       #app-loader .calming-message {
-        margin-top: 12px;
-        font-size: 11px;
+        margin-top: 10px;
+        font-size: 10px;
         opacity: 0.6;
         font-style: italic;
+      }
+
+      /* Responsive adjustments */
+      @media (min-width: 768px) {
+        #app-loader .loader-card {
+          padding: 36px 44px;
+          min-width: 300px;
+        }
+
+        #app-loader .pulse-container {
+          width: 64px;
+          height: 64px;
+          margin: 0 auto 20px;
+        }
+
+        #app-loader .brand {
+          font-size: 24px;
+          margin: 0 0 16px;
+        }
+
+        #app-loader .hint {
+          font-size: 13px;
+        }
+
+        #app-loader .calming-message {
+          font-size: 11px;
+          margin-top: 12px;
+        }
+
+        #app-loader .center-heart {
+          width: 24px;
+          height: 24px;
+        }
+
+        #app-loader .pulse-ring {
+          animation-duration: 3s;
+        }
+
+        #app-loader .pulse-ring:nth-child(2) {
+          animation-delay: 0.5s;
+        }
+
+        #app-loader .pulse-ring:nth-child(3) {
+          animation-delay: 1s;
+        }
+
+        #app-loader .center-heart {
+          animation-duration: 2s;
+        }
       }
 
       @keyframes breathe-rotate {
