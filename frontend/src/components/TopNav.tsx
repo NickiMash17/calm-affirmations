@@ -13,7 +13,7 @@ export default function TopNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="mt-4 sm:mt-6 mb-6 pt-2" aria-label="Primary">
+    <nav className="mt-3 sm:mt-4 md:mt-5 lg:mt-6 mb-4 sm:mb-5 md:mb-6 pt-2" aria-label="Primary">
       <div className="flex items-center justify-between gap-3">
         <button
           type="button"

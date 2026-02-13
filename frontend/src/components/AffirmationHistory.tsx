@@ -23,12 +23,12 @@ export default function AffirmationHistory({ entries, onClear }: Props) {
 
   if (entries.length === 0) {
     return (
-      <div className="glass-card rounded-3xl p-8 sm:p-10 text-center mt-10 animate-fade-in">
-        <div className="w-14 h-14 mx-auto rounded-full bg-muted/70 flex items-center justify-center">
-          <Clock className="w-6 h-6 text-muted-foreground" strokeWidth={1.5} />
+      <div className="glass-card rounded-3xl p-6 sm:p-8 md:p-10 text-center mt-8 sm:mt-10 animate-fade-in">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full bg-muted/70 flex items-center justify-center">
+          <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground" strokeWidth={1.5} />
         </div>
-        <h3 className="text-base font-semibold mt-4">No affirmations yet</h3>
-        <p className="text-sm text-muted-foreground mt-2">
+        <h3 className="text-sm sm:text-base font-semibold mt-3 sm:mt-4">No affirmations yet</h3>
+        <p className="text-xs sm:text-sm text-muted-foreground mt-1.5 sm:mt-2">
           Your history will appear here once you create your first one.
         </p>
       </div>
@@ -38,22 +38,22 @@ export default function AffirmationHistory({ entries, onClear }: Props) {
   const visible = expanded ? entries : entries.slice(0, 3);
 
   return (
-    <section className="mt-10 animate-fade-in" aria-label="Past affirmations">
-      <div className="flex items-center justify-between mb-4">
+    <section className="mt-8 sm:mt-10 animate-fade-in" aria-label="Past affirmations">
+      <div className="flex items-center justify-between mb-3 sm:mb-4">
         <div className="flex items-center gap-2">
-          <Clock className="w-3.5 h-3.5 text-muted-foreground/70" strokeWidth={1.5} />
-          <h2 className="text-sm font-serif font-medium text-foreground/70 tracking-wide">
+          <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-muted-foreground/70" strokeWidth={1.5} />
+          <h2 className="text-xs sm:text-sm font-serif font-medium text-foreground/70 tracking-wide">
             Past Reflections
           </h2>
         </div>
         <button
           onClick={onClear}
-          className="text-[10px] text-muted-foreground/60 hover:text-warning/80
+          className="text-[9px] sm:text-[10px] text-muted-foreground/60 hover:text-warning/80
             transition-colors duration-300 flex items-center gap-1
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
           aria-label="Clear history"
         >
-          <Trash2 className="w-3 h-3" />
+          <Trash2 className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
           Clear
         </button>
       </div>
@@ -65,11 +65,11 @@ export default function AffirmationHistory({ entries, onClear }: Props) {
             className="history-item animate-fade-in-up"
             style={{ animationDelay: `${i * 0.08}s`, animationFillMode: "backwards" }}
           >
-            <div className="glass-card rounded-2xl p-4 space-y-1.5">
-              <p className="text-foreground/90 text-sm leading-relaxed font-light line-clamp-3">
+            <div className="glass-card rounded-2xl p-3 sm:p-4 space-y-1.5">
+              <p className="text-foreground/90 text-xs sm:text-sm leading-relaxed font-light line-clamp-3">
                 "{entry.affirmation}"
               </p>
-              <div className="flex items-center justify-between text-[10px] text-muted-foreground/60">
+              <div className="flex items-center justify-between text-[9px] sm:text-[10px] text-muted-foreground/60">
                 <span>for {entry.name} - {entry.feeling}</span>
                 <span>{timeAgo(entry.timestamp)}</span>
               </div>
@@ -81,11 +81,11 @@ export default function AffirmationHistory({ entries, onClear }: Props) {
       {entries.length > 3 && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="mt-3 w-full text-xs text-muted-foreground/70 hover:text-primary/70
+          className="mt-2.5 sm:mt-3 w-full text-[10px] sm:text-xs text-muted-foreground/70 hover:text-primary/70
             transition-colors duration-300 flex items-center justify-center gap-1
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg py-2"
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg py-1.5 sm:py-2"
         >
-          <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`} />
+          <ChevronDown className={`w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`} />
           {expanded ? "Show less" : `Show ${entries.length - 3} more`}
         </button>
       )}

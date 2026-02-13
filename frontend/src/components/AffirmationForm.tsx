@@ -71,7 +71,7 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
           disabled={isLoading}
           aria-invalid={!!errors.name}
           aria-describedby={errors.name ? "name-error" : undefined}
-          className="bg-background/60 border-border/70 rounded-xl h-12 px-4 text-base
+          className="bg-background/60 border-border/70 rounded-xl h-11 sm:h-12 px-3 sm:px-4 text-sm sm:text-base
             focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all duration-300
             placeholder:text-muted-foreground/50"
         />
@@ -86,7 +86,7 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
         <Label htmlFor="feeling" className="text-sm font-medium text-foreground/80 tracking-wide uppercase text-[11px]">
           How are you feeling?
         </Label>
-        <div className="flex flex-wrap gap-2" role="group" aria-label="Quick feeling options">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2" role="group" aria-label="Quick feeling options">
           {FEELING_PRESETS.map(({ label, emoji }) => (
             <button
               key={label}
@@ -115,7 +115,7 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
           disabled={isLoading}
           aria-invalid={!!errors.feeling}
           aria-describedby={errors.feeling ? "feeling-error" : undefined}
-          className="bg-background/60 border-border/70 rounded-xl px-4 py-3 text-base
+          className="bg-background/60 border-border/70 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base
             focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all duration-300
             placeholder:text-muted-foreground/50 resize-none"
         />
@@ -136,7 +136,7 @@ export default function AffirmationForm({ onSubmit, isLoading }: Props) {
       <button
         type="submit"
         disabled={isLoading}
-        className="btn-primary-glow w-full min-h-[52px] sm:min-h-[60px] rounded-2xl text-base font-medium
+        className="btn-primary-glow w-full min-h-[48px] sm:min-h-[52px] md:min-h-[60px] rounded-2xl text-sm sm:text-base font-medium
           bg-primary text-primary-foreground
           focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none
           disabled:opacity-60 disabled:cursor-not-allowed
