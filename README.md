@@ -1,73 +1,119 @@
-# Welcome to your Lovable project
+# Live Mood Architect
 
-## Project info
+Production-structured monorepo with a FastAPI backend and a React/Vite frontend.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Canonical Architecture
 
-## How can I edit this code?
+```text
+live-mood-architect/
+├─ README.md
+├─ .gitignore
+├─ backend/
+│  ├─ main.py
+│  ├─ requirements.txt
+│  ├─ .env.example
+│  └─ app/
+│     ├─ __init__.py
+│     ├─ core/
+│     │  ├─ config.py
+│     │  └─ safety.py
+│     ├─ routes/
+│     │  ├─ affirmation.py
+│     │  └─ health.py
+│     └─ schemas/
+│        └─ affirmation.py
+└─ frontend/
+   ├─ index.html
+   ├─ package.json
+   ├─ vite.config.js
+   ├─ .env.example
+   └─ src/
+      ├─ main.jsx
+      ├─ App.jsx
+      ├─ api/
+      │  └─ client.js
+      ├─ components/
+      │  ├─ Header.jsx
+      │  ├─ AffirmationForm.jsx
+      │  ├─ ResultCard.jsx
+      │  └─ ErrorBanner.jsx
+      └─ styles/
+         └─ globals.css
+```
 
-There are several ways of editing your application.
+Notes:
+- The backend canonical path is `backend/app/routes/affirmation.py`.
+- `backend/app/api/routes/affirmations.py` remains as a compatibility shim.
+- Existing root frontend (`src/`) is kept for compatibility; canonical frontend is `frontend/`.
 
-**Use Lovable**
+## Separation of Concerns
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- `backend/app/core/config.py`: env loading, typed settings, CORS origin parsing.
+- `backend/app/core/safety.py`: prompt/safety constants.
+- `backend/app/schemas/affirmation.py`: request/response contracts.
+- `backend/app/routes/affirmation.py`: HTTP-level behavior and status mapping.
+- `backend/app/routes/health.py`: operational health endpoint (`GET /healthz`).
+- `frontend/src/api/client.js`: network client boundary.
 
-Changes made via Lovable will be committed automatically to this repo.
+## Environment Variables
 
-**Use your preferred IDE**
+Backend (`backend/.env`):
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```env
+OPENAI_API_KEY=your_key_here
+OPENAI_MODEL=gpt-4.1-mini
+ALLOWED_ORIGINS=https://your-frontend-domain.vercel.app
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Frontend (`frontend/.env`):
 
-Follow these steps:
+```env
+VITE_API_BASE=http://localhost:8000
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Local Run
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Backend:
 
-# Step 3: Install the necessary dependencies.
-npm i
+```bash
+cd backend
+python -m venv .venv
+# PowerShell
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Frontend:
+
+```bash
+cd frontend
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Root convenience scripts:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run dev:backend
+npm run dev:frontend
+```
 
-**Use GitHub Codespaces**
+## API Contract
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- `POST /api/affirmation`
+- `400` for input validation failures
+- `502` for upstream model/service failures
+- `GET /healthz` for runtime health
 
-## What technologies are used for this project?
+## Deployment Checklist
 
-This project is built with:
+Backend:
+- Set `OPENAI_API_KEY`, `OPENAI_MODEL`, `ALLOWED_ORIGINS`
+- Start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+- Verify `/docs` and `/healthz`
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Frontend:
+- Set `VITE_API_BASE` to deployed backend URL
+- Rebuild/redeploy after env updates
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
