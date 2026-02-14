@@ -1,4 +1,4 @@
-﻿import { NavLink } from "@/components/NavLink";
+import { NavLink } from "@/components/NavLink";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -32,6 +32,7 @@ export default function TopNav() {
             <NavLink
               key={link.to}
               to={link.to}
+              reloadDocument
               className="px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs transition-all duration-300
                 border border-border/60 text-muted-foreground/70 bg-background/40
                 hover:text-foreground hover:border-primary/30"
@@ -57,6 +58,7 @@ export default function TopNav() {
             <NavLink
               key={link.to}
               to={link.to}
+              reloadDocument
               onClick={() => setOpen(false)}
               className="px-4 py-3 rounded-xl text-sm transition-all duration-300
                 border border-border/50 text-muted-foreground/80 bg-background/40

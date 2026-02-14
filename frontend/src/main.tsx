@@ -18,5 +18,5 @@ if (loader) {
     window.setTimeout(() => {
       loader.remove();
     }, 360);
-  }, 450);
+  }, 900);
 }
