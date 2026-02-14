@@ -1,22 +1,43 @@
 import { createRoot } from "react-dom/client";
-import App from "./App";
+import { lazy, Suspense } from "react";
 import "./index.css";
 
-const BOOT_FLAG = "__CALM_APP_BOOTED__";
+// Lazy load App component for better initial loading performance
+const App = lazy(() => import("./App"));
+
 const loader = document.getElementById("app-loader");
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Create root and render with Suspense for lazy loading
+const root = createRoot(document.getElementById("root")!);
 
-window[BOOT_FLAG as keyof Window & string] = true;
+root.render(
+  <Suspense 
+    fallback={
+      // Keep showing loader while lazy component loads
+      <div style={{ display: 'none' }} />
+    }
+  >
+    <App />
+  </Suspense>
+);
 
-if (loader) {
-  window.setTimeout(() => {
-    loader.style.opacity = "0";
-    loader.style.pointerEvents = "none";
-    loader.style.transition = "opacity 0.35s ease-out";
-
-    window.setTimeout(() => {
-      loader.remove();
-    }, 360);
-  }, 900);
-}
+// Hide loader when the lazy component has loaded
+// The lazy import promise resolves when the component is ready
+import("./App").then(() => {
+  // Add extra delay so users can see the calming loader
+  setTimeout(() => {
+    if (loader) {
+      // Add smooth transition
+      loader.style.transition = "opacity 0.5s ease-out";
+      loader.style.opacity = "0";
+      loader.style.pointerEvents = "none";
+      
+      // Remove loader after transition
+      window.setTimeout(() => {
+        if (loader.parentNode) {
+          loader.remove();
+        }
+      }, 500);
+    }
+  }, 1500); // Show loader for at least 1.5 seconds
+});
