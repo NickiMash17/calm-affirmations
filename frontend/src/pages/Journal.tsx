@@ -1,13 +1,23 @@
 import { useState } from "react";
-import { BookOpen, Save, Trash2 } from "lucide-react";
+import { BookOpen, Save, Trash2, Pencil, Check, X } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
-import { JournalEntry, loadJournal, saveJournalEntry, clearJournal } from "@/lib/journal";
+import {
+  JournalEntry,
+  loadJournal,
+  saveJournalEntry,
+  updateJournalEntry,
+  deleteJournalEntry,
+  clearJournal,
+} from "@/lib/journal";
 
 export default function JournalPage() {
   const [text, setText] = useState("");
   const [entries, setEntries] = useState<JournalEntry[]>(() => loadJournal());
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingText, setEditingText] = useState("");
 
   const canSave = text.trim().length > 0;
+  const canUpdate = editingText.trim().length > 0;
 
   const handleSave = () => {
     if (!canSave) return;
@@ -16,9 +26,37 @@ export default function JournalPage() {
     setText("");
   };
 
+  const handleStartEdit = (entry: JournalEntry) => {
+    setEditingId(entry.id);
+    setEditingText(entry.content);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingId(null);
+    setEditingText("");
+  };
+
+  const handleConfirmEdit = () => {
+    if (!editingId || !canUpdate) return;
+    const updated = updateJournalEntry(editingId, editingText.trim());
+    if (!updated) return;
+
+    setEntries((prev) => prev.map((entry) => (entry.id === editingId ? updated : entry)));
+    handleCancelEdit();
+  };
+
+  const handleDeleteEntry = (id: string) => {
+    deleteJournalEntry(id);
+    setEntries((prev) => prev.filter((entry) => entry.id !== id));
+    if (editingId === id) {
+      handleCancelEdit();
+    }
+  };
+
   const handleClear = () => {
     clearJournal();
     setEntries([]);
+    handleCancelEdit();
   };
 
   return (
@@ -40,9 +78,7 @@ export default function JournalPage() {
         />
 
         <div className="flex items-center justify-between mt-4">
-          <span className="text-[10px] text-muted-foreground/60 tabular-nums">
-            {text.length}/280
-          </span>
+          <span className="text-[10px] text-muted-foreground/60 tabular-nums">{text.length}/280</span>
           <div className="flex items-center gap-2">
             <button
               onClick={handleClear}
@@ -74,16 +110,81 @@ export default function JournalPage() {
 
       {entries.length > 0 && (
         <div className="mt-6 space-y-3">
-          {entries.map((entry) => (
-            <div key={entry.id} className="glass-card rounded-xl p-4">
-              <p className="text-foreground/90 text-sm leading-relaxed font-light">
-                {entry.content}
-              </p>
-              <p className="text-[10px] text-muted-foreground/50 mt-2">
-                {new Date(entry.createdAt).toLocaleString()}
-              </p>
-            </div>
-          ))}
+          {entries.map((entry) => {
+            const isEditing = editingId === entry.id;
+
+            return (
+              <div key={entry.id} className="glass-card rounded-xl p-4">
+                {isEditing ? (
+                  <Textarea
+                    value={editingText}
+                    onChange={(e) => setEditingText(e.target.value)}
+                    rows={3}
+                    className="bg-background/50 border-border/60 rounded-xl
+                      focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all duration-300
+                      placeholder:text-muted-foreground/50 resize-none"
+                  />
+                ) : (
+                  <p className="text-foreground/90 text-sm leading-relaxed font-light">{entry.content}</p>
+                )}
+
+                <div className="mt-3 flex items-center justify-between gap-3">
+                  <p className="text-[10px] text-muted-foreground/50">
+                    {new Date(entry.createdAt).toLocaleString()}
+                    {entry.updatedAt ? " (edited)" : ""}
+                  </p>
+
+                  <div className="flex items-center gap-2">
+                    {isEditing ? (
+                      <>
+                        <button
+                          onClick={handleCancelEdit}
+                          className="text-[10px] text-muted-foreground/70 hover:text-foreground/90
+                            transition-colors duration-300 flex items-center gap-1"
+                          aria-label="Cancel edit"
+                        >
+                          <X className="w-3 h-3" />
+                          Cancel
+                        </button>
+                        <button
+                          onClick={handleConfirmEdit}
+                          disabled={!canUpdate}
+                          className="text-[10px] text-primary/90 hover:text-primary
+                            disabled:opacity-40 disabled:cursor-not-allowed
+                            transition-colors duration-300 flex items-center gap-1"
+                          aria-label="Save edit"
+                        >
+                          <Check className="w-3 h-3" />
+                          Save
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => handleStartEdit(entry)}
+                          className="text-[10px] text-muted-foreground/70 hover:text-foreground/90
+                            transition-colors duration-300 flex items-center gap-1"
+                          aria-label="Edit entry"
+                        >
+                          <Pencil className="w-3 h-3" />
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteEntry(entry.id)}
+                          className="text-[10px] text-muted-foreground/70 hover:text-warning/80
+                            transition-colors duration-300 flex items-center gap-1"
+                          aria-label="Delete entry"
+                        >
+                          <Trash2 className="w-3 h-3" />
+                          Delete
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
