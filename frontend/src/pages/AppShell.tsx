@@ -1,5 +1,5 @@
-import { Outlet, useLocation, useNavigationType } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import AppFooter from "@/components/AppFooter";
 import FloatingBlobs from "@/components/FloatingBlobs";
 import FloatingHearts from "@/components/FloatingHearts";
@@ -7,34 +7,13 @@ import TopNav from "@/components/TopNav";
 
 export default function AppShell() {
   const location = useLocation();
-  const navigationType = useNavigationType();
-  const [showRouteLoader, setShowRouteLoader] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [location.pathname]);
 
-  useEffect(() => {
-    // Show loader when navigating between routes
-    if (navigationType === "PUSH") {
-      setShowRouteLoader(true);
-      const timer = setTimeout(() => {
-        setShowRouteLoader(false);
-      }, 800); // Short loader for route changes
-      
-      return () => clearTimeout(timer);
-    }
-  }, [location.pathname, navigationType]);
-
   return (
     <div className="min-h-screen flex flex-col aurora-bg">
-      {/* Route change loader */}
-      {showRouteLoader && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm">
-          <div className="text-muted-foreground animate-pulse">Loading...</div>
-        </div>
-      )}
-      
       <FloatingBlobs />
       <FloatingHearts />
 
